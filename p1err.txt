@@ -1,0 +1,7 @@
+start.
+define a as number.
+read a.
+condition ( a != 20)
+{
+	show a.
+end.
