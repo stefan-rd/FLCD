@@ -1,0 +1,32 @@
+Alphabet:
+
+a. Upper (A-Z) and lower case letters (a-z) of the English alphabet
+b. Underline character '_';
+c. Decimal digits (0-9);
+
+Lexic:
+
+a.Special symbols, representing:
+- operators: + - * / = < <= >= == =/=
+- separators: ( ) { } . space , []
+- reserved words:
+    start define as number text read show condition otherwise end number
+while repeat array of
+
+b.identifiers
+-a sequence of letters and  digits, such that the first character is a letter; the rule is:
+	IDENTIFIER = LETTER | LETTER {LETTER | DIGIT}
+	LETTER = "A" | "B" | . ..| "Z" | "a" | ... |"z"
+	NON_ZERO_DIGIT = "1" |...| "9"
+	DIGIT = "0" | NON_ZERO_DIGIT
+
+c.constants
+1.integer
+	NUMBER = "0" | ["-"] NON_ZERO_DIGIT {DIGIT}
+	NATURAL_NUMBER = "0" | NON_ZERO_DIGIT {DIGIT}
+	NON_ZERO_DIGIT = "1" |...| "9"
+	DIGIT = "0" | NON_ZERO_DIGIT
+
+2.string
+	TEXT = """ {CHAR} """
+	CHAR = LETTER | DIGIT | " " 
