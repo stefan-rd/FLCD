@@ -29,4 +29,4 @@ c.constants
 
 2.string
 	TEXT = """ {CHAR} """
-	CHAR = LETTER | DIGIT | " " 
+	CHAR = LETTER | DIGIT
