@@ -15,7 +15,7 @@ while repeat array of
 
 b.identifiers
 -a sequence of letters and  digits, such that the first character is a letter; the rule is:
-	IDENTIFIER = LETTER | LETTER {LETTER | DIGIT}
+	IDENTIFIER = LETTER {LETTER | DIGIT}
 	LETTER = "A" | "B" | . ..| "Z" | "a" | ... |"z"
 	NON_ZERO_DIGIT = "1" |...| "9"
 	DIGIT = "0" | NON_ZERO_DIGIT
