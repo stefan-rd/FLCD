@@ -7,4 +7,7 @@ class PIF:
         self.__list.append((token, positionPair))
 
     def getPIF(self):
-        return self.__list
+        pif = ""
+        for element in self.__list:
+            pif = pif + str(element) + "\n"
+        return pif

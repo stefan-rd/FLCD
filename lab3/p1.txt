@@ -2,7 +2,7 @@ start.
 define a, b, c as number.
 read a.
 read b.
-c = 10.
+c = 24.
 condition (a < b)
 {
 	condition (c < b)
@@ -16,7 +16,7 @@ condition (a < b)
 }
 otherwise
 {
-	condition (a =< c)
+	condition (a <= c)
 	{
 		show c.
 	}
@@ -25,4 +25,4 @@ otherwise
 		show a.
 	}
 }
-end.start.
+end.
