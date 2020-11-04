@@ -1,0 +1,13 @@
+start.
+define a as number.
+define b,c as text.
+b = "abc".
+c = "edf.
+read a.
+condition ( a != 20)
+{
+	show a.
+	show b.
+	show c.
+}
+end.

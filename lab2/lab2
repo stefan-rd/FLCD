@@ -1,0 +1,135 @@
+"""
+the number of buckets in the hashtable
+"""
+NUMBER_OF_BUCKETS = 37
+
+"""
+Class used to represent the elements inside the hash table
+Attributes:
+key - a string value used for hashing
+nextElement - the next element in the linked list that is used in the case of collision 
+"""
+class Element:
+
+    """
+    Constructor for the Element class
+    Parameters:
+        key - a string value used for hashing stored inside the Element object
+    Output: -
+    """
+    def __init__(self, key):
+        self.__key = key
+        self.__nextElement = None
+
+    """
+    Getter for the key attribute
+    Parameters: -
+    Output: a string value representing the key
+    """
+    def getKey(self):
+        return self.__key
+
+    """
+    Getter for the next element in the linked list
+    Parameters: -
+    Output: an Element object 
+    """
+    def getNextElement(self):
+        return self.__nextElement
+
+    """
+    Setter for the next element in the linked list
+    Parameters: a new Element object to replace the current nextElement
+    Output: -
+    """
+    def setNextElement(self, nextElement):
+        self.__nextElement = nextElement
+
+    """
+    Overriding the string method
+    """
+    def __str__(self):
+        return "Key: " + str(self.__key) + "--> " + str(self.__nextElement)
+
+"""
+Class used to represent the Symbol Table (as a hash table)
+Attributes:
+numberOfBuckets - the number of buckets inside by the hash table
+buckets - a list containing the buckets (elements in a linked list)
+"""
+class SymbolTable:
+
+    """
+    Class used to represent the elements inside the hash table
+    Attributes:
+    numberOfBuckets - the number of buckets inside by the hash table
+    buckets - a list containing the buckets (elements in a linked list)
+    """
+    def __init__(self, numberOfBuckets):
+        self.__numberOfBuckets = numberOfBuckets
+        self.__buckets = [None] * numberOfBuckets
+
+    """
+    Overriding the string method
+    """
+    def __str__(self):
+        resultingString = ""
+        for arrayIndex in range(0, self.__numberOfBuckets):
+            resultingString = resultingString + str(arrayIndex) + ". " + str(self.__buckets[arrayIndex]) + "\n"
+        return resultingString
+
+    """
+    Hash function that returns the sum of ASCII codes of characters that make up the key (token) modulo the 
+    number of buckets
+    Parameters:
+        key - the string value (token) used for hashing 
+    Output: the hash value corresponding to the key
+    """
+    def __hashFunction(self, key):
+        asciiValue = 0
+        for character in key:
+            asciiValue += ord(character)
+        return asciiValue % self.__numberOfBuckets
+
+    """
+    Function that either returns the index of the bucket and the position in the bucket of a key (token) that already 
+    exists or adds a new token and also returns its bucket index and its position in the bucket
+    Parameters: 
+        key - the string value (token) that is stored in the Symbol Table
+    Output:
+        a pair containing the hash value/bucket index and the index in that respective bucket/linked list 
+    """
+    def position(self, key):
+        #compute the hash value of the key
+        hashValue = self.__hashFunction(key)
+        newElement = Element(key)
+
+        #the case when there is no element having that hash value
+        if(self.__buckets[hashValue] is None):
+            self.__buckets[hashValue] = newElement
+            return (hashValue, 0)
+        else:
+            previousElement = None
+            currentElement = self.__buckets[hashValue]
+            currentLinkedListIndex = 0
+            while currentElement is not None:
+                if currentElement.getKey() == key:
+                    #the case when the key was already added and is inside one the the linked lists
+                    return (hashValue, currentLinkedListIndex)
+                else:
+                    previousElement = currentElement
+                    currentElement = currentElement.getNextElement()
+                    currentLinkedListIndex = currentLinkedListIndex + 1
+            previousElement.setNextElement(newElement)
+            #the case when the key was not added and there are other keys with the same hash value
+            return (hashValue, currentLinkedListIndex)
+
+symbol = SymbolTable(NUMBER_OF_BUCKETS)
+symbol.position("abc")
+symbol.position("bbb")
+symbol.position("11bb")
+print(symbol)
+print(symbol.position("11bb"))
+
+
+
