@@ -59,11 +59,34 @@ class FA:
     def getTransitions(self):
         return self.__transitions
 
-    def verifySequence(self, sequence):
-        currentState = self.__initialState
-        for symbol in sequence:
-            print(symbol)
+    def getTransitionsForState(self, state):
+        transitionsForState = []
+        for transition in self.__transitions:
+            if transition.getStartState() == state:
+                transitionsForState.append(transition)
+        return transitionsForState
 
+    def checkSequence(self, sequence):
+        currentState = self.__initialState
+        if sequence == "":
+            if self.__initialState in self.__finalStates:
+                return True
+            else:
+                return False
+        index = 0
+        for symbol in sequence:
+            transitionsForCurrentState = self.getTransitionsForState(currentState)
+            for transition in transitionsForCurrentState:
+                if transition.getSymbol() == symbol:
+                    currentState = transition.getEndState()
+                    if index == len(sequence) - 1:
+                        if currentState in self.__finalStates:
+                            return True
+                        else:
+                            return False
+                    break
+            index += 1
+        return False
 
 
 

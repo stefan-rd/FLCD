@@ -12,7 +12,8 @@ def run():
            "2. Alphabet.\n" \
            "3. Transitions.\n" \
            "4. Initial state.\n" \
-           "5. Final states.\n"
+           "5. Final states.\n" \
+           "6. Check sequence.\n"
     while True:
         try:
             print(menu)
@@ -30,6 +31,9 @@ def run():
                 print(fa.getInitialState())
             elif choice == "5":
                 print(fa.getFinalStates())
+            elif choice == "6":
+                sequence = input("Enter sequence: ")
+                print(str(fa.checkSequence(sequence)) + "\n")
             else:
                 continue
         except Exception as e:
