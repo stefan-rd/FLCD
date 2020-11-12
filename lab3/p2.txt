@@ -2,6 +2,7 @@ start.
 define a,b as number.
 read a.
 read b.
+a = "aa".
 while (a =/= b) repeat
 {  
         condition (a > b)
